@@ -1,0 +1,27 @@
+id: SerializedPayloadGenerator
+info:
+  name: SerializedPayloadGenerator
+  author: ruoji
+  classification: platform
+  tags: SerializedPayloadGenerator,payload,platform
+  severity: critical
+  metadata:
+    vendor: NotSoSecure
+    product: SerializedPayloadGenerator
+    verified: true
+  query:
+    fofa:
+    quake:
+    shodan:
+    hunter: web.body="Home Page - Serialized Payload Generator"
+    zoomeye:
+packet:
+  http:
+    - method: GET
+      type: body
+      words:
+        - <title>Home Page - Serialized Payload Generator</title>
+judge:
+  IF:
+    expression: http
+    type: web login

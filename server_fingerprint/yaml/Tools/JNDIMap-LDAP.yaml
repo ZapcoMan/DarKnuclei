@@ -1,0 +1,27 @@
+id: JNDIMap-LDAP
+info:
+  name: LDAPSERVER
+  author: ruoji
+  classification: Tools
+  tags: java,jndi,ldap,JNDIMap-LDAP,JNDIMap,Tools
+  severity: critical
+  metadata:
+    vendor: welk1n
+    product: JNDIMap
+    verified: true
+  query:
+    fofa:
+    quake:
+    shodan:
+    hunter:
+    zoomeye:
+packet:
+  tcp:
+    - type: response
+      words:
+        - hex|136a6176614e616d696e675265666572656e63653016040d6a617661436c6173734e616d6531050403666f6f3028040c6a617661436f64656261736531
+      send_data: "30680201026346042642617369632f436f6d6d616e642f6233426c62694174595342445957786a64577868644739790a01000a0103020100020100010100870b6f626a656374436c6173733000a01b30190417322e31362e3834302e312e3131333733302e332e342e32"
+judge:
+  IF:
+    expression: tcp
+    type: JNDIMap-LDAP

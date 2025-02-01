@@ -1,0 +1,40 @@
+id: ARL
+info:
+  name: Asset Reconnaissance Lighthouse(灯塔)
+  author: ruoji
+  classification: platform
+  tags: Asset Reconnaissance Lighthouse,ARL,arl,platform
+  severity: critical
+  metadata:
+    vendor: tophant
+    product: Asset Reconnaissance Lighthouse
+    verified: true
+  query:
+    fofa:
+    quake:
+    shodan:
+    hunter: web.body="资产灯塔系统"
+    zoomeye:
+jarm_hash:
+  default:
+    ARL:
+      - 15d3fd16d29d29d00042d43d000000fbc10435df141b3459e26f69e76d5947
+packet:
+  http:
+    - method: GET
+      type: favicon
+      words:
+        - -1680844968
+      path: /favicon.ico
+      condition: and
+    - method: GET
+      type: body
+      words:
+        - <title>资产灯塔系统</title>
+      path: /login
+      condition: and
+judge:
+  IF:
+    expression: http
+    version: 2.6
+    type: web login

@@ -1,0 +1,27 @@
+id: LDAPSERVER
+info:
+  name: LDAPSERVER
+  author: ruoji
+  classification: Tools
+  tags: java,jndi,ldap,LDAPSERVER,Tools
+  severity: critical
+  metadata:
+    vendor: LDAPSERVER
+    product: LDAPSERVER
+    verified: true
+  query:
+    fofa:
+    quake:
+    shodan:
+    hunter:
+    zoomeye:
+packet:
+  tcp:
+    - type: response
+      words:
+        - hex|3024020100781f0a0154040004008a16312e332e362e312e342e312e313436362e3230303336
+      send_data: "16030100f2010000ee03038934faefd9b8a9dc22ad81c5caaae4790a03c7e6630bd2a5b4668f55d33b235420ef2f3c3fe25cb28226ac6d1a28d3ff0e80f3ed0f3896e1ee71ab5262b42831ca0026c02bc02fc02cc030cca9cca8c009c013c00ac014009c009d002f0035c012000a1301130213030100007f000500050100000000000a000a0008001d001700180019000b00020100000d001a0018080404030807080508060401050106010503060302010203ff010001000017000000120000002b0009080304030303020301003300260024001d002024c8a5e303f0ec9cc045c5cd0ac4c838796077a4a12fccaa1ca098488d568b55"
+judge:
+  IF:
+    expression: tcp
+    type: LDAPSERVER

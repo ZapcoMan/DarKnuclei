@@ -1,0 +1,40 @@
+id: gophish
+info:
+  name: gophish
+  author: ruoji
+  classification: platform
+  tags: gophish,platform
+  severity: critical
+  metadata:
+    vendor: gophish
+    product: gophish
+    verified: true
+  query:
+    fofa:
+    quake:
+    shodan:
+    hunter: web.title=="Gophish - Login"
+    zoomeye:
+jarm_hash:
+  login:
+    gophish login:
+      - 40d40d40d00000000043d40d40d43d684d61a135bd962c8dd9c541ddbaefa8
+      - 28d28d28d00028d00041d28d28d41dd060cefe378a6bd1495c5a78eaded98b
+packet:
+  http:
+    - method: GET
+      type: favicon
+      words:
+        - -1201003153
+      path: /images/favicon.ico
+      condition: and
+    - method: GET
+      type: body
+      words:
+        - <title>Gophish - Login</title>
+      path: /login?next=%2F
+      condition: and
+judge:
+  IF:
+    expression: http
+    type: web login

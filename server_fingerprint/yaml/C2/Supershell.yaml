@@ -1,0 +1,50 @@
+id: Supershell
+info:
+  name: Supershell
+  author: ruoji
+  classification: C2
+  tags: Supershell,C2
+  severity: critical
+  metadata:
+    vendor: tdragon6
+    product: Supershell
+    verified: true
+  query:
+    fofa:
+    quake:
+    shodan:
+    hunter: web.title=="Supershell - 登录"
+    zoomeye:
+jarm_hash:
+  l_port:
+    Supershell_v2.0.0_listening_port:
+      - 3fd3fd20d3fd3fd00043d3fd3fd43d5ecfbe778b06e32b538bd51f24eb7398
+packet:
+  http:
+    - method: GET
+      type: body
+      words:
+        - <h1 class="h1 text-center mb-4">Supershell&nbsp;&nbsp;<label class="h4 mt-1 small text-secondary">v2.0.0</label></h1>
+        - <title>Supershell - 登录</title>
+      path: /supershell/login
+      condition: and
+    - method: GET
+      type: favicon
+      words:
+        - 2072706279
+      path: /static/img/favicon.ico
+      condition: and
+  tcp:
+    - type: response
+      words:
+        - hex|5353482d322e302d4f70656e5353485f382e300d0a
+      send_data: "5353482d76322e322e332d6c696e75785f616d6436340d0a"
+judge:
+  IF:
+    expression: http
+    version: 2.0.0
+    type: web login
+  ELSE:
+    expression: tcp
+    version: 2.0.0
+    type: listening port

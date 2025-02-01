@@ -1,0 +1,34 @@
+id: vulfocus
+info:
+  name: vulfocus
+  author: ruoji
+  classification: platform
+  tags: vulfocus,Vulhub,Vulapps,platform
+  severity: critical
+  metadata:
+    product: fofapro
+    vendor: vulfocus
+    verified: true
+  query:
+    fofa:
+    quake:
+    shodan:
+    hunter: web.title=="vulfocus"
+    zoomeye:
+packet:
+  http:
+    - method: GET
+      type: body
+      words:
+        - <title>vulfocus</title>
+      condition: and
+    - method: GET
+      type: favicon
+      words:
+        - 1460560944
+      path: /favicon.ico
+      condition: and
+judge:
+  IF:
+    expression: http
+    type: web login

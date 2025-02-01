@@ -1,0 +1,36 @@
+id: DBJ
+info:
+  name: DBJ(大宝剑)
+  author: ruoji
+  classification: platform
+  tags: DBJ,dbj,WgpSec,platform
+  severity: critical
+  metadata:
+    vendor: wintrysec(温酒)
+    product: DBJ
+    verified: true
+  query:
+    fofa:
+    quake:
+    shodan:
+    hunter: web.body="大宝剑-实战化攻防对抗系统"
+    zoomeye:
+packet:
+  http:
+    - method: GET
+      type: favicon
+      words:
+        - 880536520
+      path: /static/images/favicon.ico
+      condition: and
+    - method: GET
+      type: body
+      words:
+        - <span>大宝剑-实战化攻防对抗系统</span>
+      path: /auth/login
+      condition: and
+judge:
+  IF:
+    expression: http
+    version: 2.6
+    type: web login

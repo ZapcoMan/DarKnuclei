@@ -1,0 +1,35 @@
+id: Medusa
+info:
+  name: Medusa(美杜莎)
+  author: ruoji
+  classification: platform
+  tags: Medusa,mds,platform
+  severity: critical
+  metadata:
+    vendor: Ascotbe
+    product: Medusa
+    verified: true
+  query:
+    fofa:
+    quake:
+    shodan:
+    hunter: web.icon="848e5f043fb0cf41a6ce45eb15c8da50"
+    zoomeye:
+packet:
+  http:
+    - method: GET
+      type: favicon
+      words:
+        - 1541856261
+      path: /favicon.ico
+      condition: and
+    - method: GET
+      type: body
+      words:
+        - Medusa doesn't work properly without JavaScript
+        - <title>Medusa</title>
+      condition: and
+judge:
+  IF:
+    expression: http
+    type: web login

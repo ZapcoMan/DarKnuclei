@@ -1,0 +1,29 @@
+id: NPS
+info:
+  name: NPS
+  author: ruoji
+  classification: platform
+  tags: NPS,nps,proxy,platform
+  severity: critical
+  metadata:
+    vendor: ehang-io
+    product: NPS
+    verified: true
+  query:
+    fofa:
+    quake:
+    shodan:
+    hunter: web.body="一款轻量级、高性能、功能强大的内网穿透代理服务器" || web.body="A lightweight, high-performance, powerful intranet reverse proxy server"
+    zoomeye:
+packet:
+  http:
+    - method: GET
+      type: body
+      words:
+        - 404 not found,power by <a href="//ehang.io/nps">nps</a>
+        - <span langtag="word-readmore"></span> <strong><a href="https://ehang.io/nps" langtag="word-go"></a></strong>
+      path: /login/index
+judge:
+  IF:
+    expression: http
+    type: web login

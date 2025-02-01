@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>扫描报告</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            table-layout: auto;  /* 自适应列宽 */
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+            word-wrap: break-word;  /* 使文本溢出时换行 */
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .scan-section {
+            margin-top: 40px;
+        }
+        .scan-header {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #2980b9;
+        }
+
+        /* 响应式设计：当屏幕宽度小于768px时，调整表格显示 */
+        @media (max-width: 768px) {
+            table, th, td {
+                font-size: 14px; /* 缩小字体 */
+                padding: 8px; /* 调整单元格内边距 */
+            }
+            th {
+                font-size: 16px; /* 调整标题字体大小 */
+            }
+            .scan-header {
+                font-size: 1.2em; /* 调整标题字体大小 */
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>DarKnuclei Scan</h1>
+        <h3>时间：</h3>{{ time_time if time_time else 'None' }}
+
+        <div class="scan-section">
+            <div class="scan-header">资产测绘</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>URL</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for entry in cyberspace_search %}
+                    <tr>
+                        <td>{{ entry | e if entry else 'None' }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="scan-section">
+            <div class="scan-header">端口探测</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ip</th>
+                        <th>port</th>
+                        <th>protocol</th>
+                        <th>status</th>
+                        <th>title</th>
+                        <th>host</th>
+                        <th>frameworks</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for entry in gogo_scan %}
+                    <tr>
+                        <td>{{ entry.ip | e }}</td>
+                        <td>{{ entry.port | e }}</td>
+                        <td>{{ entry.protocol | e }}</td>
+                        <td>{{ entry.status | e }}</td>
+                        <td>{{ entry.title | e }}</td>
+                        <td>{{ entry.host | e }}</td>
+                        <td>{{ entry.frameworks | e }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="scan-section">
+            <div class="scan-header">指纹结果</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>url</th>
+                        <th>title</th>
+                        <th>status</th>
+                        <th>favicon</th>
+                        <th>name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for entry in observer_ward %}
+                        {% for observer_ in entry %}
+                        <tr>
+                            {% for key, value in observer_.items() %}
+                                {% if key == 'url' or key == 'title' or key == 'status' or key == 'favicon' or key == 'name' %}
+                                    {% if value == [] %}
+                                        <td>&nbsp;</td>  <!-- 如果值是空列表，输出空白 -->
+                                    {% elif value is mapping and value|length > 0 %}
+                                        <td>{{ value | e }}</td>  <!-- 对字典内容进行转义 -->
+                                    {% elif value is string %}
+                                        <td>{{ value | e }}</td>  <!-- 对字符串进行转义 -->
+                                    {% elif value is iterable %}
+                                        <td>{{ value|join(', ') | e }}</td>  <!-- 对列表等可迭代类型进行转义 -->
+                                    {% else %}
+                                        <td>{{ value | e }}</td>  <!-- 对其他类型的值进行转义 -->
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="scan-section">
+            <div class="scan-header">漏洞结果</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>information</th>
+                        <th>URL</th>
+                        <th>severity</th>
+                        <th>详情</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for entry in nuclei_scan %}
+                    <tr>
+                        <td>{{ entry.information | e }}</td>
+                        <td>{{ entry.URL | e }}</td>
+                        <td>{{ entry.severity | e }}</td>
+                        <td>{{ entry.detail | e }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

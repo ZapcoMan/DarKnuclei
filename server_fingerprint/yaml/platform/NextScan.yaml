@@ -1,0 +1,31 @@
+id: NextScan
+info:
+  name: 飞刃(NextScan)
+  author: ruoji
+  classification: platform
+  tags: NextScan,fr,platform
+  severity: critical
+  metadata:
+    vendor: 同程艺龙
+    product: NextScan
+    verified: true
+  query:
+    fofa:
+    quake:
+    shodan:
+    hunter: web.title="NextScan"
+    zoomeye:
+packet:
+  http:
+    - method: GET
+      type: body
+      words:
+        - <title>NextScan管理系统</title>
+        - <img data-v-2cdb720a="" src="/NextScan.png" alt="logo" class="logo">
+        - 飞刃 - 企业级黑盒漏洞扫描系统
+      path: /user/login?redirect=%2F
+      condition: and
+judge:
+  IF:
+    expression: http
+    type: web login

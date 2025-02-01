@@ -1,0 +1,29 @@
+id: revsuit
+info:
+  name: revsuit
+  author: ruoji
+  classification: platform
+  tags: revsuit,dnslog,platform
+  severity: critical
+  metadata:
+    vendor: Li4n0
+    product: revsuit
+    verified: true
+  query:
+    fofa:
+    quake:
+    shodan:
+    hunter: protocol=="http"&&ip.port=="10000"&&web.body=="404 page not found"
+    zoomeye:
+packet:
+  http:
+    - method: GET
+      type: body
+      words:
+        - <title>RevSuit Control Panel</title>
+      path: /revsuit/admin/
+      condition: and
+judge:
+  IF:
+    expression: http
+    type: web login

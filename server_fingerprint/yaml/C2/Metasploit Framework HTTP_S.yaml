@@ -1,0 +1,52 @@
+id: Metasploit Framework HTTP_S
+info:
+  name: Metasploit Framework HTTP_S
+  author: ruoji
+  classification: C2
+  tags: msf,Metasploit Framework,msf,Rapid7,http,https,C2
+  severity: critical
+  metadata:
+    vendor: Rapid7
+    product: Metasploit Framework
+    verified: true
+jarm_hash:
+  default:
+    Metasploit Framework HTTPS:
+      - 07d19d12d21d21d07c42d43d000000f50d155305214cf247147c43c0f1a823
+packet:
+  http:
+    - method: GET
+      type: response_header
+      words:
+        - "Server: Apache"
+        - "Connection: Keep-Alive"
+        - "Cache-Control: no-cache"
+      path: /xpLMyP_e9RlHrUGvIC9pkQFzsrcTgW_tv0bulXooi7cRrZt1hg4Mo4SOHVDRb57nEqy5sWO8IDgRbi
+      condition: and
+    - method: GET
+      type: body_length
+      relationship: gt
+      words:
+        - 50
+      path: /xpLMyP_e9RlHrUGvIC9pkQFzsrcTgW_tv0bulXooi7cRrZt1hg4Mo4SOHVDRb57nEqy5sWO8IDgRbi
+      condition: and
+    - method: GET
+      type: body
+      words:
+        - <html><body><h1>It works!</h1></body></html>
+      condition: and
+  tcp:
+    - type: response
+      words:
+        - hex|820122300d06092a864886f70d01010105000382010f003082010a0282010100
+        - hex|302706092a864886f70d010901
+      send_data: "16030100430100003f03036782392ec70df4780730525f9928864a3fbd8286a4243b270f2a93fd699d05ac00000c003d0035003c002f000a00ff0100000a000d0006000404010301"
+judge:
+  IF:
+    expression: tcp,http
+    version:
+    type: https listening port
+  ELSE:
+    expression: http
+    version:
+    type: http listening port

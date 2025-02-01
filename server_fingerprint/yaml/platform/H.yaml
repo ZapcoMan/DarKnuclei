@@ -1,0 +1,35 @@
+id: H
+info:
+  name: H
+  author: ruoji
+  classification: platform
+  tags: H,SiJiDo,h,platform
+  severity: critical
+  metadata:
+    vendor: SiJiDo
+    product: H
+    verified: true
+  query:
+    fofa:
+    quake:
+    shodan:
+    hunter: web.body="https://github.com/SiJiDo/H"
+    zoomeye:
+packet:
+  http:
+    - method: GET
+      type: favicon
+      words:
+        - -135483385
+      path: /static/assets/images/favicon.ico
+      condition: and
+    - method: GET
+      type: body
+      words:
+        - href="https://github.com/SiJiDo/H">https://github.com/SiJiDo/H</a>
+      path: /login
+      condition: and
+judge:
+  IF:
+    expression: http
+    type: web login

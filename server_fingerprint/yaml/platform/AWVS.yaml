@@ -1,0 +1,33 @@
+id: Acunetix
+info:
+  name: Acunetix Web Vulnerability Scanner
+  author: ruoji
+  classification: platform
+  tags: Acunetix,awvs,AWVS,platform
+  severity: critical
+  metadata:
+    vendor: Acunetix Premium,Acunetix Web Vulnerability Scanner
+    product: Acunetix
+    verified: true
+  query:
+    fofa:
+    quake:
+    shodan:
+    hunter: tls-jarm.hash="2ad2ad0002ad2ad0002ad2ad2ad2ad02098c5f1b1aef82f7daaf9fed36c4e8"&&ip.port=="3443"
+    zoomeye:
+jarm_hash:
+  default:
+    AWVS:
+      - 2ad2ad0002ad2ad0002ad2ad2ad2adce49238b62fc566f8bdb579566d23d07
+      - 2ad2ad0002ad2ad0002ad2ad2ad2ad02098c5f1b1aef82f7daaf9fed36c4e8
+packet:
+  http:
+    - method: GET
+      type: body
+      words:
+        - <title>Acunetix</title>
+        - <title>Acunetix - Login</title>
+judge:
+  IF:
+    expression: http
+    type: web login

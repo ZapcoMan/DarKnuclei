@@ -1,0 +1,34 @@
+id: rengine
+info:
+  name: rengine
+  author: ruoji
+  classification: platform
+  tags: rengine,platform
+  severity: critical
+  metadata:
+    vendor: tdragon6
+    product: rengine
+    verified: true
+  query:
+    fofa:
+    quake:
+    shodan:
+    hunter: web.title="Login reNgine"
+    zoomeye:
+jarm_hash:
+  login:
+    rengine:
+      - 2ad2ad0002ad2ad0002ad2ad2ad2ada5fc7ec76b7ed0b839211317d3844486
+packet:
+  http:
+    - method: GET
+      type: body
+      words:
+        - <h3 class="">Login to reNgine</h3>
+        - <title>Login reNgine</title>
+      path: /login/?next=/
+      condition: and
+judge:
+  IF:
+    expression: http
+    type: web login

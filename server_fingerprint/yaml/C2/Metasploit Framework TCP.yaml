@@ -1,0 +1,23 @@
+id: Metasploit Framework TCP
+info:
+  name: Metasploit Framework TCP
+  author: ruoji
+  classification: C2
+  tags: msf,Metasploit Framework,msf,Rapid7,tcp,C2
+  severity: critical
+  metadata:
+    vendor: Rapid7
+    product: Metasploit Framework
+    verified: true
+packet:
+  tcp:
+  - type: response
+    words:
+      - hex|574831ff48c7c604782e0048c7
+      - hex|574831ff48c7c60478
+      - hex|4d65746572707265746572
+judge:
+  IF:
+    expression: tcp
+    version:
+    type: tcp listening port

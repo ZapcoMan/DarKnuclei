@@ -1,0 +1,33 @@
+id: web-chains
+info:
+  name: web-chains
+  author: ruoji
+  classification: platform
+  tags: web-chains,payload,platform,Chains
+  severity: critical
+  metadata:
+    vendor: Java-Chains
+    product: web-chains
+    verified: true
+  query:
+    fofa:
+    quake:
+    shodan:
+    hunter: web.title="Java Chains"
+    zoomeye:
+packet:
+  http:
+    - method: GET
+      type: body
+      words:
+        - <title>Java Chains</title>
+    - method: GET
+      type: favicon
+      words:
+        - 232359244
+      path: /favicon.ico
+      condition: and
+judge:
+  IF:
+    expression: http
+    type: web login

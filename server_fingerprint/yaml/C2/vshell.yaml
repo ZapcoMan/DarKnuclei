@@ -1,0 +1,33 @@
+id: vshell
+info:
+  name: vshell
+  author: ruoji
+  classification: C2
+  tags: vshell,C2
+  severity: critical
+  metadata:
+    vendor: dbappsecurity
+    product: vshell
+    verified: true
+packet:
+  http:
+    - method: GET
+      type: body
+      words:
+       - export PATH=$PATH:/bin:/usr/bin:/sbin:/usr/local/bin:/usr/sbin
+      path: /slt
+  tcp:
+    - type: length
+      words:
+        - 1024
+      send_data: b64de|NmMzNjM0MjAyMDIwCjA4YzQzMTM5MzIyZTMxMzYzODJlMzYzNTJlMzEzNjM0MDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAw
+judge:
+  IF:
+    expression: tcp,http
+    version: 4.6.0~4.9.3
+    type: listening port
+  ELSE:
+    expression: tcp
+    version: 3.4.0
+    type: listening port
+

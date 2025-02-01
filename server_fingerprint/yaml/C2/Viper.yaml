@@ -1,0 +1,50 @@
+id: Viper TCP
+info:
+  name: Viper(炫彩蛇)
+  author: ruoji
+  classification: C2
+  tags: Viper,C2
+  severity: critical
+  metadata:
+    vendor: FunnyWolf
+    product: Viper
+    verified: true
+  query:
+    fofa:
+    quake:
+    shodan:
+    hunter: web.title=="VIPER"
+    zoomeye:
+jarm_hash:
+  login:
+    Viper_login:
+      - 21d19d00021d21d00042d43d0000005ad20eceaf7f71ae0887d2ff117bf97f
+      - 21d19d00021d21d21c21d19d21d21dd63eb481052cd655ca2b1b4e0f7740c9
+      - 21d19d00021d21d00042d43d0000001cf1edc2aa7242ae5c6e08704bc03530
+      - 07d14d16d21d21d00042d43d000000aa99ce74e2c6d013c745aa52b5cc042d
+packet:
+  http:
+    - method: GET
+      type: body
+      words:
+        - <title>VIPER</title>
+      condition: and
+    - method: GET
+      type: favicon
+      words:
+        - -482952971
+      path: /favicon.png
+      condition: and
+  tcp:
+    - type: length
+      relationship: eq
+      words:
+        - 387
+      send_data: "bb26f92cbb26f92cbb26f92cbb26f92cbb26f92cbb26f92cbb26f847bb26f92cbb26f920bb24f92dbb26f93cbb26f905bb27f92e8c15ca1c8a12cb1c8313cc148b16ce158c10ca1e8312cb198a10cd1b8c17c119bb26f92d9526fd2e9d167b2d9916f42ab20c7f643dd1f42dba27fc2cb8a4f823bb167b2db1247b2dba2678e56179bfc60e2b979e745addee9ddbec69764738a316943f93cfef44c04a562126dee00d5bc62c7529cd0993e3dcf19ba72accd655a30697fa71f9997976ab3a8c7d96a9789c0337678dd8b4ef05dee158436f557fd4e70e264cc8839825145443a776445dbe0aeb81658b155f5ffd41a551b81a9a21fff7ed28c355c620ff45376c11509320ddb914e1e3a5fe93ca49b0fc5715228e8db2aabe286e33311b1be6a247bf4bbae4b2a1fd6756ec89bbf4e865c4dd01d64524fa263d3a682570e6eb04fb730c495a1805cc7fad6593437d7449a7ea4a2cffa1d442458a067a759bf280f41dfd28d42b939a3e51c87937cb78ca4eeed62fc2d9083ff2648736a9fb2fba26f8"
+judge:
+  IF:
+    expression: http
+    type: web login
+  ELSE:
+    expression: tcp
+    type: tcp listening port

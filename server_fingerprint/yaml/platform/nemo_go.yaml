@@ -1,0 +1,34 @@
+id: nemo_go
+info:
+  name: nemo
+  author: ruoji
+  classification: platform
+  tags: nemo_go,nemo,platform
+  severity: critical
+  metadata:
+    vendor: hanc00l
+    product: nemo_go
+    verified: true
+  query:
+    fofa:
+    quake:
+    shodan:
+    hunter: web.title=="Nemo - Login"
+    zoomeye:
+packet:
+  http:
+    - method: GET
+      type: favicon
+      words:
+        - 2053336112
+      path: /static/images/favicon.ico
+      condition: and
+    - method: GET
+      type: body
+      words:
+        - <title>Nemo - Login</title>
+      condition: and
+judge:
+  IF:
+    expression: http
+    type: web login

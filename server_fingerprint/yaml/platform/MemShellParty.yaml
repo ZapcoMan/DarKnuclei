@@ -1,0 +1,34 @@
+id: MemShellParty
+info:
+  name: MemShellParty
+  author: ruoji
+  classification: platform
+  tags: MemShellParty,shell,java,JavaWeb,platform
+  severity: critical
+  metadata:
+    product: ReaJason
+    vendor: MemShellParty
+    verified: true
+  query:
+    fofa:
+    quake:
+    shodan:
+    hunter: web.title=="MemShellParty"
+    zoomeye:
+packet:
+  http:
+    - method: GET
+      type: body
+      words:
+        - <title>MemShellParty</title>
+      condition: and
+    - method: GET
+      type: favicon
+      words:
+        - -433469847
+      path: /vite.svg
+      condition: and
+judge:
+  IF:
+    expression: http
+    type: web

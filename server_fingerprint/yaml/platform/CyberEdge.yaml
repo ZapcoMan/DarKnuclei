@@ -1,0 +1,35 @@
+id: CyberEdge
+info:
+  name: CyberEdge
+  author: ruoji
+  classification: platform
+  tags: CyberEdge,platform
+  severity: critical
+  metadata:
+    vendor: Symph0nia
+    product: CyberEdge
+    verified: true
+  query:
+    fofa:
+    quake:
+    shodan:
+    hunter:
+    zoomeye:
+packet:
+  http:
+    - method: GET
+      type: body
+      words:
+        - <title>cyberedge</title>
+        - cyberedge
+    - method: POST
+      type: body
+      send_data_type: json
+      words:
+        - {"error": "验证码无效"}
+      path: /api/auth/validate
+      send_data: {"account":"NvOwycv9z6bdBVBG","code":"173396"}
+judge:
+  IF:
+    expression: http
+    type: /js/chunk-vendors.a244ec88.js

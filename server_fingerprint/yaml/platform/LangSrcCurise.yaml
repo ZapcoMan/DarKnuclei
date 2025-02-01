@@ -1,0 +1,31 @@
+id: LangSrcCurise
+info:
+  name: LangSrcCurise
+  author: ruoji
+  classification: platform
+  tags: LangSrcCurise,platform
+  severity: critical
+  metadata:
+    vendor: LangziFun
+    product: LangSrcCurise
+    verified: true
+  query:
+    fofa:
+    quake:
+    shodan:
+    hunter: web.body="https://github.com/SiJiDo/H"
+    zoomeye:
+packet:
+  http:
+    - method: GET
+      type: body
+      words:
+        - LangSrc资产监控平台
+        - LangSrc|资产监控平台
+        - LangSrc|资产监控平台 用户登陆
+      path: /login
+      condition: and
+judge:
+  IF:
+    expression: http
+    type: web login

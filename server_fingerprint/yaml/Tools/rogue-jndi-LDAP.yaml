@@ -1,0 +1,28 @@
+id: rogue-jndi-LDAP
+info:
+  name: rogue-jndi
+  author: ruoji
+  classification: Tools
+  tags: java,jndi,ldap,rogue-jnd,rogue,Groovy,rogue-jnd-ldap,Tools
+  severity: critical
+  metadata:
+    vendor: veracode-research
+    product: rogue-jndi
+    verified: true
+  query:
+    fofa:
+    quake:
+    shodan:
+    hunter:
+    zoomeye:
+packet:
+  tcp:
+    - type: response
+      words:
+        - hex|7d7c7b6261736536342c2d647d7c7b626173682c2d697d272e6578656375746528297070707070787400256f72672e6170616368652e6e616d696e672e666163746f72792e4265616e466163746f72797074001767726f6f76792e6c616e672e47726f6f76795368656c6c
+      send_data: "304a020102632804086f3d67726f6f76790a01000a0103020100020100010100870b6f626a656374436c6173733000a01b30190417322e31362e3834302e312e3131333733302e332e342e32"
+      condition: and
+judge:
+  IF:
+    expression: tcp
+    type: artsploit.controllers.Groovy

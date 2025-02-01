@@ -1,0 +1,38 @@
+id: Scope Sentry
+info:
+  name: Scope Sentry
+  author: ruoji
+  classification: platform
+  tags: Scope Sentry,platform
+  severity: critical
+  metadata:
+    vendor: Autumn52
+    product: Scope Sentry
+    verified: true
+  query:
+    fofa:
+    quake:
+    shodan:
+    hunter: web.body="Scope Sentry"
+    zoomeye:
+jarm_hash:
+  default:
+    Scope Sentry:
+      - 15d3fd16d29d29d00042d43d000000fbc10435df141b3459e26f69e76d5947
+packet:
+  http:
+    - method: GET
+      type: favicon
+      words:
+        - 713394502
+      path: /favicon.ico
+      condition: and
+    - method: GET
+      type: body
+      words:
+        - <title>Scope Sentry</title>
+      condition: and
+judge:
+  IF:
+    expression: http
+    type: web login

@@ -1,0 +1,27 @@
+id: RMISERVER
+info:
+  name: RMISERVER
+  author: ruoji
+  classification: Tools
+  tags: java,jndi,rmi,RMISERVER,Tools
+  severity: critical
+  metadata:
+    vendor: welk1n
+    product: RMISERVER
+    verified: true
+  query:
+    fofa:
+    quake:
+    shodan:
+    hunter:
+    zoomeye:
+packet:
+  tcp:
+    - type: response
+      words:
+        - hex|4e000c
+      send_data: "4a524d4900024b"
+judge:
+  IF:
+    expression: tcp
+    type: JNDI-Injection-Exploit-RMISERVER

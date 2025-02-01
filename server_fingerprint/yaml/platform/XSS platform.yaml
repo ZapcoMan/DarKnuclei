@@ -1,0 +1,29 @@
+id: XSS platform
+info:
+  name: XSS platform
+  author: ruoji
+  classification: platform
+  tags: XSS,xss,platform
+  severity: critical
+  metadata:
+    product: XSS
+    vendor: XSS
+    verified: true
+  query:
+    fofa:
+    quake:
+    shodan:
+    hunter: web.body="XSS平台"
+    zoomeye:
+packet:
+  http:
+    - method: GET
+      type: body
+      words:
+        - <title>XSS Platform</title>
+        - Xss平台</a>
+      path: /index.php?do=login
+judge:
+  IF:
+    expression: http
+    type: web login

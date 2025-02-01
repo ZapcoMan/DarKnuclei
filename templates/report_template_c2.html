@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>扫描报告</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            table-layout: auto;  /* 自适应列宽 */
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+            word-wrap: break-word;  /* 使文本溢出时换行 */
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .scan-section {
+            margin-top: 40px;
+        }
+        .scan-header {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #2980b9;
+        }
+
+        /* 响应式设计：当屏幕宽度小于768px时，调整表格显示 */
+        @media (max-width: 768px) {
+            table, th, td {
+                font-size: 14px; /* 缩小字体 */
+                padding: 8px; /* 调整单元格内边距 */
+            }
+            th {
+                font-size: 16px; /* 调整标题字体大小 */
+            }
+            .scan-header {
+                font-size: 1.2em; /* 调整标题字体大小 */
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>DarKnuclei Scan RT</h1>
+        <h3>时间：</h3>{{ time_time if time_time else 'None' }}
+
+
+
+        <div class="scan-section">
+            <div class="scan-header">端口探测</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ip</th>
+                        <th>port</th>
+                        <th>protocol</th>
+                        <th>status</th>
+                        <th>title</th>
+                        <th>host</th>
+                        <th>frameworks</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for entry in gogo_scan %}
+                    <tr>
+                        <td>{{ entry.ip | e }}</td>
+                        <td>{{ entry.port | e }}</td>
+                        <td>{{ entry.protocol | e }}</td>
+                        <td>{{ entry.status | e }}</td>
+                        <td>{{ entry.title | e }}</td>
+                        <td>{{ entry.host | e }}</td>
+                        <td>{{ entry.frameworks | e }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+                <div class="scan-section">
+            <div class="scan-header">溯源结果</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ip</th>
+                        <th>id</th>
+                        <th>version</th>
+                        <th>name</th>
+                        <th>vendor</th>
+<!--                        <th>author</th>-->
+<!--                        <th>tags</th>-->
+<!--                        <th>severity</th>-->
+<!--                        <th>metadata</th>-->
+<!--                        <th>query</th>-->
+<!--                        <th>tcp</th>-->
+<!--                        <th>http</th>-->
+                        <th>type</th>
+                        <th>http rule</th>
+                        <th>tcp rule</th>
+                        <th>jarm rule</th>
+                        <th>jarm_hash</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for entry in command_and_control %}
+                    <tr>
+                        <td>{{ entry.ip | e }}</td>
+                        <td>{{ entry.id | e }}</td>
+                        <td>{{ entry.version | e }}</td>
+                        <td>{{ entry.name | e }}</td>
+                        <td>{{ entry.metadata.vendor | e }}</td>
+<!--                        <td>{{ entry.author | e }}</td>-->
+<!--                        <td>{{ entry.tags | e }}</td>-->
+<!--                        <td>{{ entry.severity | e }}</td>-->
+<!--                        <td>{{ entry.metadata | e }}</td>-->
+<!--                        <td>{{ entry.query | e }}</td>-->
+<!--                        <td>{{ entry.tcp_tf | e }}</td>-->
+<!--                        <td>{{ entry.http_tf | e }}</td>-->
+                        <td style="color: purple;">{{ entry.type | e }}</td>
+                        <td style="color: red;">{{ entry.http_rule | e }}</td>
+                        <td style="color: red;">{{ entry.tcp_rule | e }}</td>
+                        <td style="color: red;">{{ entry.jarm_tf | e }}</td>
+                        <td>{{ entry.jarm_hash|join(', ') | e }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</body>
+</html>

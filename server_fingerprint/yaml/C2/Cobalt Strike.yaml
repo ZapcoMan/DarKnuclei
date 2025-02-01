@@ -1,0 +1,56 @@
+id: Cobalt Strike
+info:
+  name: Cobalt Strike
+  author: ruoji
+  classification: C2
+  tags: Cobalt Strike,CS,cs,Fortra,C2
+  severity: critical
+  metadata:
+    vendor: Fortra
+    product: Cobalt Strike
+    verified: true
+  query:
+    fofa:
+    quake: 'response:"\x00\x00\x00\x00" AND port: "50050" AND service: "http/ssl"'
+    shodan:
+    hunter:
+    zoomeye:
+jarm_hash:
+  default:
+    Cobalt Strike:
+      - 2ad2ad16d2ad2ad00042d42d00042ddb04deffa1705e2edc44cae1ed24a4da
+packet:
+  tcp:
+    - method: ssl
+      type: response
+      words:
+       - hex|0000cafe
+       - hex|00000000
+      send_data: "0000beef0861646d696e3132334141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141"
+  http:
+    - method: OPTIONS
+      type: response_header
+      words:
+        - OPTIONS,GET,HEAD,POST
+      condition: and
+    - method: GET
+      type: status_code
+      words:
+        - 200
+      path: /aaa9
+      condition: and
+    - method: GET
+      type: body_length
+      words:
+        - 2000
+      path: /aaa9
+      condition: and
+judge:
+  IF:
+    expression: http
+    version:
+    type: listening port
+  ELSE:
+    expression: tcp
+    version:
+    type: server port

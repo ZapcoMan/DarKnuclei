@@ -1,0 +1,27 @@
+id: JETTYSERVER
+info:
+  name: JNDI-Injection-Exploit-JETTYSERVER
+  author: ruoji
+  classification: Tools
+  tags: java,jndi,jettyserver,jetty,JETTYSERVER,Tools
+  severity: critical
+  metadata:
+    vendor: JETTYSERVER
+    product: JETTYSERVER
+    verified: true
+  query:
+    fofa:
+    quake:
+    shodan:
+    hunter:
+    zoomeye:
+packet:
+  http:
+    - method: GET
+      type: response_header
+      words:
+        - "Server: Jetty(8.y.z-SNAPSHOT)"
+judge:
+  IF:
+    expression: http
+    type: JNDI-Injection-Exploit-JETTYSERVER
