@@ -103,15 +103,13 @@ DarKnuclei 分为红队蓝队模块
 ```
 >python39 main.py -h
 
-.__       .  .         .
-|  \ _.._.|_/ ._ . . _.| _ *
-|__/(_][  |  \[ )(_|(_.|(/,|
-    DarKnuclei Scan v2.0 by RuoJi
-    https://github.com/RuoJi6/DarKnuclei
 
+    .__       .  .         .    
+    |  \ _.._.|_/ ._ . . _.| _ *
+    |__/(_][  |  \[ )(_|(_.|(/,| 
+    DarKnuclei Beta v2.0 by RuoJi
+        
 usage: main.py [-h] {NSM,WEB,GOGO,RTSCAN} ...
-
-红队快速打点利器
 
 positional arguments:
   {NSM,WEB,GOGO,RTSCAN}
@@ -121,8 +119,9 @@ positional arguments:
     GOGO                GOGO扫描
     RTSCAN              扫描红队基础设施与服务
 
-optional arguments:
+options:
   -h, --help            show this help message and exit
+
 ```
 
 ## 【优先内测】
