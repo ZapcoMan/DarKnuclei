@@ -39,6 +39,6 @@ class Colorpr:
     |__/(_][  |  \[ )(_|(_.|(/,| 
     DarKnuclei Beta v2.0 by RuoJi
         """
-        color_functions = [self.color_red, self.color_red, self.color_blue]
+        color_functions = [self.color_red, self.color_purple, self.color_red, self.color_red, self.color_blue, self.color_red, self.color_blue]
         random_color_function = random.choice(color_functions)
         return random_color_function(description_data)
