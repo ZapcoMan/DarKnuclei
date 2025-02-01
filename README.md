@@ -150,7 +150,8 @@ options:
 - `RTSCAN`：扫描红队基础设施与服务
 
 ## 优先内测
-提交平台或C2或服务等至issue进行审核，通过后可加入内测群。提交格式：ARL，Asset Reconnaissance Lighthouse，https://github.com/xxxx/ARL
+* 官方的 优先内测 
+* 提交平台或C2或服务等至issue进行审核，通过后可加入内测群。提交格式：ARL，Asset Reconnaissance Lighthouse，https://github.com/xxxx/ARL
 
 ## TODO：
 
