@@ -1,12 +1,7 @@
-from scan import Scan
-from dark_log import DarkLog
-from cyberspace_search import Cyberspace
-from savefile import SaveFile
-from resultdata import ResultData
 import argparse
+
+from dark_log import DarkLog
 from print_color import Colorpr
-import re
-import shutil
 from run_def import NSM_subcommand, WEBSCAN_subcommand, GOGO_command, RTScan_command
 
 darklog = DarkLog()
